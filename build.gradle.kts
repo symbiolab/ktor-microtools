@@ -7,6 +7,8 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_ERROR
 import org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_OUT
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+group = "de.symbiolab"
+
 plugins {
     kotlin("jvm") version Dependencies.Kotlin
     kotlin("plugin.serialization") version Dependencies.Kotlin
@@ -63,11 +65,23 @@ fun isNonStable(version: String): Boolean {
     return isStable.not()
 }
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+val spotlessCheckOrFormat = tasks.register("spotlessCheckOrFormat") {
+    if (project.ext.has("ciBuild")) {
+        dependsOn(tasks.spotlessCheck)
+    } else {
+        dependsOn(tasks.spotlessApply)
+    }
+}
+
 tasks {
     withType<KotlinCompile> {
         kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_17.toString()
-            freeCompilerArgs = listOf("-opt-in=kotlin.RequiresOptIn")
+            jvmTarget = JavaVersion.VERSION_11.toString()
         }
     }
 
@@ -78,7 +92,7 @@ tasks {
     }
 
     compileKotlin {
-        dependsOn(withType<SpotlessApply>())
+        dependsOn(spotlessCheckOrFormat)
     }
 
     test {
