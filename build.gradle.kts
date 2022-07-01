@@ -22,6 +22,20 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+
+    implementation("io.ktor:ktor-server-core:${Dependencies.Ktor}")
+    implementation("io.ktor:ktor-server-auth:${Dependencies.Ktor}")
+    implementation("io.ktor:ktor-server-auth-jwt:${Dependencies.Ktor}")
+
+    implementation("ch.qos.logback:logback-classic:${Dependencies.Logback}")
+    implementation("io.github.microutils:kotlin-logging:${Dependencies.KotlinLogging}")
+
+    testImplementation("io.ktor:ktor-server-test-host:${Dependencies.Ktor}")
+
+    testImplementation("io.kotest:kotest-runner-junit5:${Dependencies.Kotest}")
+    testImplementation("io.kotest:kotest-assertions-core:${Dependencies.Kotest}")
+    testImplementation("io.kotest:kotest-assertions-json:${Dependencies.Kotest}")
+    testImplementation("io.kotest:kotest-assertions-ktor:${Dependencies.KotestKtor}")
 }
 
 defaultTasks("clean", "test")
