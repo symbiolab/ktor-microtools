@@ -1,4 +1,4 @@
-import com.diffplug.gradle.spotless.SpotlessApply
+
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
