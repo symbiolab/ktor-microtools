@@ -10,6 +10,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 group = "de.symbiolab"
 
 plugins {
+    id("maven-publish")
+    id("java-library")
+
     kotlin("jvm") version Dependencies.Kotlin
     kotlin("plugin.serialization") version Dependencies.Kotlin
 
@@ -102,5 +105,27 @@ tasks {
         }
 
         outputs.upToDateWhen { false }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/symbiolab/ktor-microtools")
+            credentials {
+                username = System.getenv("GITHUB_USERNAME")
+                password = System.getenv("GITHUB_PASSWORD")
+            }
+        }
+    }
+
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "de.symbiolab"
+            artifactId = "ktor-microtools"
+
+            from(components["java"])
+        }
     }
 }
