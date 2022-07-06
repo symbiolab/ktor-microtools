@@ -115,8 +115,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/symbiolab/ktor-microtools")
             credentials {
-                username = System.getenv("GITHUB_USERNAME")
-                password = System.getenv("GITHUB_PASSWORD")
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
             }
         }
     }

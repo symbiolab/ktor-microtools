@@ -28,5 +28,4 @@ jobs:
       - name: Publish
         run: ./gradlew --info -Pversion=${{github.ref_name}} build publish
         env:
-          GITHUB_USERNAME: 'symbiolab'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
