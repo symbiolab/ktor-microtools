@@ -8,6 +8,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_OUT
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "de.symbiolab"
+version = if (project.hasProperty("version")) project.property("version") as String else "0.1-SNAPSHOT"
 
 plugins {
     id("maven-publish")
@@ -122,8 +123,28 @@ publishing {
 
     publications {
         create<MavenPublication>("maven") {
-            groupId = "de.symbiolab"
-            artifactId = "ktor-microtools"
+            pom {
+                name.set("ktor-microtools")
+                description.set("A collection of useful tools accompanying")
+                url.set("https://github.com/symbiolab/ktor-microtools")
+                licenses {
+                    license {
+                        name.set("The MIT License (MIT)")
+                        url.set("https://mit-license.org/")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("symbiolab")
+                        name.set("Symbiolab")
+                    }
+                }
+                scm {
+                    connection.set("scm:git:git@github.com:symbiolab/ktor-microtools.git")
+                    developerConnection.set("scm:git:ssh://git@github.com:symbiolab/ktor-microtools.git")
+                    url.set("https://github.com/symbiolab/ktor-microtools")
+                }
+            }
 
             from(components["java"])
         }

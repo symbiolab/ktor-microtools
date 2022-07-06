@@ -26,7 +26,7 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Publish
-        run: ./gradlew --info build publish
+        run: ./gradlew --info -Pversion=${{github.ref_name}} build publish
         env:
           GITHUB_USERNAME: 'symbiolab'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
