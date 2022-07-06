@@ -6,15 +6,39 @@
 
 A collection of useful tools accompanying [Ktor](https://ktor.io).
 
-[Installation](#installation) •
-[Usage](#usage)
+[Gradle](#gradle) •
+[Maven](#maven)
 
 </div>
 
 # Installation
 
-...
+## Gradle
 
-# Usage
+```kotlin
+repositories {
+    maven {
+        url = uri("https://maven.pkg.github.com/symbiolab/ktor-microtools")
+    }
+}
+```
 
-...
+```kotlin
+dependencies {
+    implementation("de.symbiolab.ktor-microtools:<version>")
+}
+```
+
+## Maven
+
+```xml
+<dependency>
+  <groupId>de.symbiolab</groupId>
+  <artifactId>ktor-microtools</artifactId>
+  <version><!-- version --></version>
+</dependency>
+```
+
+```shell
+mvn install
+```
